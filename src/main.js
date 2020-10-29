@@ -1,11 +1,20 @@
-import h, {createElement} from './core/VirtualDom.js';
+import h, {createElement, updateElement} from './core/VirtualDom.js';
 
 const $app = document.querySelector('#app');
 
-const $list = h('ul', {},
-    h('li', {}, 'item1'),
-    h('li', {}, 'item2'),
-    h('li', {}, 'item3'),
+const $list = h('ul', null,
+    h('li', null, 'item1'),
+    h('li', null, 'hello'),
   );
 
-$app.appendChild(createElement($list));
+const $changedList = h('ul', null,
+  h('li', null, 'item1'),
+  h('li', null, 'item2'),
+);
+
+const $reload = createElement(h('button', { id: 'reload' }, 'reload'));
+document.body.appendChild($reload);
+updateElement($app, $list);
+$reload.addEventListener('click', e => {
+  updateElement($app, $changedList, $list);
+})
