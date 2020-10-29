@@ -1,5 +1,5 @@
-export const createVirtualDOM = (tagName, props, ...children) => {
-  return { tagName, props, children }
+export const createVirtualDOM = (type, props, ...children) => {
+  return { type, props, children }
 };
 
 export const createElement = (node) => {
